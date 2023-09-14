@@ -10,7 +10,30 @@
 void screen::initVariables(){
     this->gameWidth = 960;
     this->gameHeight = 720;
+    this->students = readCsv();
+}
 
+vector<vector<string>> screen::readCsv(){
+    vector<vector<string>> content;
+
+	fstream file (fname, ios::in);
+	if(file.is_open())
+	{
+		while(getline(file, line))
+		{
+			row.clear();
+ 
+			stringstream str(line);
+ 
+			while(getline(str, word, ','))
+				row.push_back(word);
+			content.push_back(row);
+		}
+	}
+	else
+		cout<<"Could not open the file\n";
+ 
+	return content;
 }
 
 /**
@@ -44,7 +67,16 @@ void screen::initMessages(){
     this->defaultMessage.setCharacterSize(40);
     this->defaultMessage.setPosition(170.f, 200.f);
     this->defaultMessage.setFillColor(sf::Color::White);
-    this->defaultMessage.setString("Everything is set up correctly!\n\nPress esc to exit the window.");
+    // for(int i=0;i<students.size();i++)
+	// {
+	// 	for(int j=0;j<students[i].size();j++)
+	// 	{
+	// 		cout<<students[i][j]<<" ";
+	// 	}
+	// 	cout<<"\n";
+	// }
+    string test = students[0][0];
+    this->defaultMessage.setString(test);
 }
 
 /**
@@ -82,7 +114,7 @@ void screen::rungame(){
     this->window->draw(defaultMessage);
 
     //Display classroom background
-    this->window->draw(background);
+    //this->window->draw(background);
 
     // Display things on screen
     this->window->display();

@@ -7,6 +7,14 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Main.hpp>
 
+//Needed for CSV
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <sstream>
+using namespace std;
+
 /*
  *	Class that acts as the game engine.
  *	Wrapper class.
@@ -34,6 +42,13 @@ private:
     //Running events
     sf::Event event;
 
+    //CSV contents
+    string fname = "students.csv";
+    vector<vector<string>> students;
+	vector<string> row;
+	string line, word;
+    
+
     void initVariables();
     void initWindow();
     void initFonts();
@@ -48,4 +63,5 @@ public:
     //Functions
     void pollEvents();
     void rungame();
+    vector<vector<string>> readCsv();
 };
