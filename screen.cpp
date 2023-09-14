@@ -63,20 +63,18 @@ void screen::initFonts(){
  *
  */
 void screen::initMessages(){
-    this->defaultMessage.setFont(font);
-    this->defaultMessage.setCharacterSize(40);
-    this->defaultMessage.setPosition(170.f, 200.f);
-    this->defaultMessage.setFillColor(sf::Color::White);
-    // for(int i=0;i<students.size();i++)
-	// {
-	// 	for(int j=0;j<students[i].size();j++)
-	// 	{
-	// 		cout<<students[i][j]<<" ";
-	// 	}
-	// 	cout<<"\n";
-	// }
-    string test = students[0][0];
-    this->defaultMessage.setString(test);
+    sf::Text defaultMessage[size];
+    for(int i=0;i<students.size();i++){
+        this->defaultMessage[i].setFont(font);
+        this->defaultMessage[i].setCharacterSize(40);
+        this->defaultMessage[i].setPosition(170.f, 200.f + (i*20));
+        this->defaultMessage[i].setFillColor(sf::Color::White);
+		// for(int j=0;j<students[i].size();j++){
+		// 	cout<<students[i][j]<<" ";
+		// }
+    string message = students[i][0];
+    this->defaultMessage[i].setString(message);
+    }
 }
 
 /**
@@ -110,11 +108,12 @@ void screen::rungame(){
     // Clear the window
     this->window->clear(sf::Color(0, 0, 0));
 
-    //Display default message
-    this->window->draw(defaultMessage);
-
     //Display classroom background
-    //this->window->draw(background);
+    this->window->draw(background);
+
+    //Display student names
+    for(int i = 0; i < 30; i++)
+        this->window->draw(defaultMessage[i]);
 
     // Display things on screen
     this->window->display();

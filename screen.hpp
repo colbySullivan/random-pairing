@@ -37,7 +37,7 @@ private:
     sf::Font font;
 
     // Create text
-    sf::Text defaultMessage;
+    //sf::Text defaultMessage [5];
 
     //Running events
     sf::Event event;
@@ -47,6 +47,8 @@ private:
     vector<vector<string>> students;
 	vector<string> row;
 	string line, word;
+    int size = students.size();
+    sf::Text defaultMessage[30]; //TODO need set size or else error
     
 
     void initVariables();
