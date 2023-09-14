@@ -1,5 +1,7 @@
 #include "screen.hpp"
 #include <string> 
+#include <algorithm>
+#include <random>
 
 /**
  * Initialize global variables
@@ -66,16 +68,39 @@ void screen::initMessages(){
     sf::Text defaultMessage[size];
     for(int i=0;i<students.size();i++){
         this->defaultMessage[i].setFont(font);
-        this->defaultMessage[i].setCharacterSize(40);
-        this->defaultMessage[i].setPosition(170.f, 200.f + (i*20));
+        this->defaultMessage[i].setCharacterSize(20);
         this->defaultMessage[i].setFillColor(sf::Color::White);
-		// for(int j=0;j<students[i].size();j++){
-		// 	cout<<students[i][j]<<" ";
+		// for(int j=0;j<students[i].size();j++){ // TODO For reading other columns
+		// 	
 		// }
-    string message = students[i][0];
-    this->defaultMessage[i].setString(message);
     }
+    randomize();
+    for(int i=0;i<students.size();i++){
+        string message = students[i][0];
+        this->defaultMessage[i].setString(message);
+    }
+    this->initSeatPos();
 }
+
+//TODO basic random function needs to be updated
+void screen::randomize(){
+    auto rd = std::random_device {}; 
+    auto rng = std::default_random_engine { rd() };
+    std::shuffle(std::begin(students), std::end(students), rng);
+}
+
+void screen::initSeatPos(){
+    //[{80,70},{170,80}{400,80}, {490,80}]
+    int x = 80;
+    int y = 70;
+    for(int i = 0; i < 6; i++){ //Rows
+        if (i == 2 || i == 4)
+            x+=140;
+        this->defaultMessage[i].setPosition((x + (i*90)), y); //Todo need to finish spacing
+    }
+    //TODO add some for loops that will put xy coordinates where seats are
+}
+
 
 /**
  * return True if window is still opened

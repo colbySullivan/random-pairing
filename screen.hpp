@@ -55,6 +55,8 @@ private:
     void initWindow();
     void initFonts();
 	void initMessages();
+    void randomize();
+    void initSeatPos();
 public:
 	//Constructors / Destructors
 	screen();
