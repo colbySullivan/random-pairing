@@ -74,7 +74,7 @@ void screen::initMessages(){
 		// 	
 		// }
     }
-    randomize();
+    //randomize();
     for(int i=0;i<students.size();i++){
         string message = students[i][0];
         this->defaultMessage[i].setString(message);
@@ -91,13 +91,18 @@ void screen::randomize(){
 
 void screen::initSeatPos(){
     //[{80,70},{170,80}{400,80}, {490,80}]
-    int x = 80;
     int y = 70;
-    for(int i = 0; i < 6; i++){ //Rows
+    for(int j = 0; j < 4; j++){
+        int x = 80;
+        if (j == 2)
+            y+=50;
+        for(int i = 0; i < 6; i++){ //Rows
         if (i == 2 || i == 4)
             x+=140;
-        this->defaultMessage[i].setPosition((x + (i*90)), y); //Todo need to finish spacing
+        this->defaultMessage[(i + (j*6))].setPosition((x + (i*90)), (y + (j*80))); //Todo need to finish spacing
+        }
     }
+    
     //TODO add some for loops that will put xy coordinates where seats are
 }
 
