@@ -1,14 +1,14 @@
 #include <iostream>
-#include "window.h"
-#include "window.cpp"
+#include "screen.hpp"
+#include "screen.cpp"
 
 int main(){
-	//Init Game engine
-	Game game;
+	//Init window instance
+	screen window;
 
-	//Game loop
-	while (game.running()){
-		game.rungame();
+	//Window loop
+	while (window.running()){
+		window.rungame();
 	}
 
 	//End of application

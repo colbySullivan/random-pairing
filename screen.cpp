@@ -1,4 +1,4 @@
-#include "window.h"
+#include "screen.hpp"
 #include <string> 
 
 /**
@@ -7,18 +7,21 @@
  * Includes variables for the height and width of the window
  *
  */
-void Game::initVariables(){
-    this->gameWidth = 800;
-    this->gameHeight = 600;
+void screen::initVariables(){
+    this->gameWidth = 960;
+    this->gameHeight = 720;
+
 }
 
 /**
  * Creates a new window instance with the global size variables
  */
-void Game::initWindow(){
-	this->window = new sf::RenderWindow(sf::VideoMode(static_cast<unsigned int>(gameWidth), static_cast<unsigned int>(gameHeight), 32), "Template",
-                            sf::Style::Titlebar | sf::Style::Close);
+void screen::initWindow(){
+	this->window = new sf::RenderWindow(sf::VideoMode(static_cast<unsigned int>(gameWidth), static_cast<unsigned int>(gameHeight), 32), "Classroom Boogy", sf::Style::Default);
     this->window->setVerticalSyncEnabled(true);
+    if(!this->backgroundTexture.loadFromFile("resources/classroom.png"))
+        return exit(0);
+    this->background = sf::Sprite(backgroundTexture);
 }
 
 /**
@@ -26,7 +29,7 @@ void Game::initWindow(){
  * 
  * return True if file is found
  */
-void Game::initFonts(){
+void screen::initFonts(){
     if (!this->font.loadFromFile("resources/tuffy.ttf"))
         return exit(0);
 }
@@ -36,7 +39,7 @@ void Game::initFonts(){
  * a simple message on the window.
  *
  */
-void Game::initMessages(){
+void screen::initMessages(){
     this->defaultMessage.setFont(font);
     this->defaultMessage.setCharacterSize(40);
     this->defaultMessage.setPosition(170.f, 200.f);
@@ -47,14 +50,14 @@ void Game::initMessages(){
 /**
  * return True if window is still opened
  */
-const bool Game::running() const{
+const bool screen::running() const{
 	return this->window->isOpen();
 }
 
 /**
  * Checks if any key has been pressed and runs an event accordingly
  */
-void Game::pollEvents(){
+void screen::pollEvents(){
     while (this->window->pollEvent(this->event)){
             // Window closed or escape key pressed: exit
             if ((this->event.type == sf::Event::Closed) ||
@@ -68,7 +71,7 @@ void Game::pollEvents(){
 /**
  * Main run file that polls and displays
  */
-void Game::rungame(){
+void screen::rungame(){
     // Handle events
     this->pollEvents();
 
@@ -78,6 +81,9 @@ void Game::rungame(){
     //Display default message
     this->window->draw(defaultMessage);
 
+    //Display classroom background
+    this->window->draw(background);
+
     // Display things on screen
     this->window->display();
 }
@@ -86,7 +92,7 @@ void Game::rungame(){
  * Default global variables for new game class instance
  *
  */
-Game::Game(){
+screen::screen(){
 	this->initVariables();
     this->initWindow();
     this->initFonts();
