@@ -74,7 +74,7 @@ void screen::initMessages(){
 		// 	
 		// }
     }
-    //randomize();
+    randomize();
     for(int j=0;j<students.size();j++){
         string message = students[j][0];
         this->defaultMessage[j].setString(message);
@@ -111,9 +111,8 @@ void screen::initSeatPos(){
         for(int z = 0; z < 4; z++){
             if(z == 2)
                 x+= 140;
-            this->defaultMessage[spot+z+(4*l)].setPosition((x + (z*90)), (y + (l*80)));
+            this->defaultMessage[spot+z+(l*4)].setPosition((x + (z*90)), (y + (l*80)));
         }
-        
     }
 }
 
@@ -146,7 +145,7 @@ void screen::pollEvents(){
  * Main run file that polls and displays
  */
 void screen::rungame(){
-    if(students.size() < 35){
+    if(students.size() < 60){
     // Handle events
     this->pollEvents();
 
@@ -157,7 +156,7 @@ void screen::rungame(){
     this->window->draw(background);
 
     //Display student names
-    for(int i = 0; i < 30; i++)
+    for(int i = 0; i < 33; i++)
         this->window->draw(defaultMessage[i]);
 
     // Display things on screen
