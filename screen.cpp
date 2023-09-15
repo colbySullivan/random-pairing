@@ -65,19 +65,19 @@ void screen::initFonts(){
  *
  */
 void screen::initMessages(){
-    sf::Text defaultMessage[size];
+    sf::Text defaultMessage[students.size()];
     for(int i=0;i<students.size();i++){
         this->defaultMessage[i].setFont(font);
         this->defaultMessage[i].setCharacterSize(20);
-        this->defaultMessage[i].setFillColor(sf::Color::White);
+        this->defaultMessage[i].setFillColor(sf::Color::Black);
 		// for(int j=0;j<students[i].size();j++){ // TODO For reading other columns
 		// 	
 		// }
     }
     //randomize();
-    for(int i=0;i<students.size();i++){
-        string message = students[i][0];
-        this->defaultMessage[i].setString(message);
+    for(int j=0;j<students.size();j++){
+        string message = students[j][0];
+        this->defaultMessage[j].setString(message);
     }
     this->initSeatPos();
 }
@@ -89,21 +89,32 @@ void screen::randomize(){
     std::shuffle(std::begin(students), std::end(students), rng);
 }
 
+// This is a mess and will only work for this lab
 void screen::initSeatPos(){
-    //[{80,70},{170,80}{400,80}, {490,80}]
+    // Pixel spacing [{80,70},{170,80}{400,80}, {490,80}]
     int y = 70;
     for(int j = 0; j < 4; j++){
         int x = 80;
         if (j == 2)
             y+=50;
         for(int i = 0; i < 6; i++){ //Rows
-        if (i == 2 || i == 4)
-            x+=140;
-        this->defaultMessage[(i + (j*6))].setPosition((x + (i*90)), (y + (j*80))); //Todo need to finish spacing
+            if (i == 2 || i == 4) //Inbetween column table clusters
+                x+=140;
+            this->defaultMessage[(i + (j*6))].setPosition((x + (i*90)), (y + (j*80))); 
         }
     }
-    
-    //TODO add some for loops that will put xy coordinates where seats are
+    y = 530;
+    int x = 395;
+    int spot = 24; //After instructor table
+    for(int l = 0; l <= 1; l++){
+        x = 395;
+        for(int z = 0; z < 4; z++){
+            if(z == 2)
+                x+= 140;
+            this->defaultMessage[spot+z+(4*l)].setPosition((x + (z*90)), (y + (l*80)));
+        }
+        
+    }
 }
 
 
@@ -125,6 +136,9 @@ void screen::pollEvents(){
                 this->window->close();
                 break;
             }
+            //Press space to reshuffle
+            if ((this->event.type == sf::Event::KeyReleased) && (this->event.key.code == sf::Keyboard::Space))
+                    this->initMessages();
         }
 }
 
@@ -132,6 +146,7 @@ void screen::pollEvents(){
  * Main run file that polls and displays
  */
 void screen::rungame(){
+    if(students.size() < 35){
     // Handle events
     this->pollEvents();
 
@@ -147,6 +162,7 @@ void screen::rungame(){
 
     // Display things on screen
     this->window->display();
+    }
 }
 
 /**

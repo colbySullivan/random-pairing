@@ -47,8 +47,7 @@ private:
     vector<vector<string>> students;
 	vector<string> row;
 	string line, word;
-    int size = students.size();
-    sf::Text defaultMessage[30]; //TODO need set size or else error
+    sf::Text defaultMessage[34]; //TODO need set size or else error
     
 
     void initVariables();
