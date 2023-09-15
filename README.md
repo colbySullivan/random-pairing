@@ -1,5 +1,13 @@
-# SFML-Template
-Commands to build statically and dynamically are provided.
+# random-pairing
+Janky program to randomly sort students into desks in this one specific classroom.
+
+## Issues and plans
+Take all of these with a grain of salt as this was just a for fun afternoon project and my ambitions are bound to change
+- Currently the script occupies the top left first but there are plans to make it more spaced out
+- Only the current lab is accessable but if required there is room for the other lab
+- There are plans to make modifying students easier
+- Random could be better but it works
+
 
 # Running
 
@@ -25,6 +33,8 @@ make clean
 ```
 
 # Scripts
+Commands to build statically and dynamically are provided.
+
 ### Static build
 ```
 .\static.bat
