@@ -1,6 +1,10 @@
 # random-pairing
 Janky program to randomly sort students into desks in this one specific classroom.
 
+# Controls
+- Escape to exit program
+- Press and release space bar to reshuffle
+
 ## Issues and plans
 Take all of these with a grain of salt as this was just a for fun afternoon project and my ambitions are bound to change
 - Currently the script occupies the top left first but there are plans to make it more spaced out
