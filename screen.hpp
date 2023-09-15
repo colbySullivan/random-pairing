@@ -48,6 +48,9 @@ private:
 	vector<string> row;
 	string line, word;
     sf::Text defaultMessage[34]; //TODO need set size or else error
+
+    // Seat positions
+    std::multimap<int, int> positions;
     
 
     void initVariables();

@@ -101,28 +101,49 @@ void screen::randomize(){
 // There was very little thought into the future proof of this part
 void screen::initSeatPos(){
     // Pixel spacing for first row[{80,70},{170,80}{400,80}, {490,80}]
-    int y = 70;
-    for(int j = 0; j < 4; j++){
-        int x = 85;
-        if (j == 2)
-            y+=50;
-        for(int i = 0; i < 6; i++){ //Rows
-            if (i == 2 || i == 4) //Inbetween column table clusters
-                x+=140;
-            this->defaultMessage[(i + (j*6))].setPosition((x + (i*90)), (y + (j*80))); 
-        }
-    }
-    y = 530;
-    int x = 400;
-    int spot = 24; //After instructor table
-    for(int l = 0; l <= 1; l++){
-        x = 400;
-        for(int z = 0; z < 4; z++){
-            if(z == 2)
-                x+= 140;
-            this->defaultMessage[spot+z+(l*4)].setPosition((x + (z*90)), (y + (l*80)));
-        }
-    }
+    // int y = 70;
+    // for(int j = 0; j < 4; j++){
+    //     int x = 85;
+    //     if (j == 2)
+    //         y+=50;
+    //     for(int i = 0; i < 6; i++){ //Rows
+    //         if (i == 2 || i == 4) //Inbetween column table clusters
+    //             x+=140;
+    //         this->defaultMessage[(i + (j*6))].setPosition((x + (i*90)), (y + (j*80))); 
+    //     }
+    // }
+    // y = 530;
+    // int x = 400;
+    // int spot = 24; //After instructor table
+    // for(int l = 0; l <= 1; l++){
+    //     x = 400;
+    //     for(int z = 0; z < 4; z++){
+    //         if(z == 2)
+    //             x+= 140;
+    //         this->defaultMessage[spot+z+(l*4)].setPosition((x + (z*90)), (y + (l*80)));
+    //     }
+    // }
+    this->positions.insert(std::pair<int, int>(85, 70)); // 85 70, 85 150
+    this->positions.insert(std::pair<int, int>(85, 280)); // 85 280, 85 360
+
+    this->positions.insert(std::pair<int, int>(175, 70)); // 175 70, 175 150
+    this->positions.insert(std::pair<int, int>(175, 280)); //175 280, 175 360
+
+    this->positions.insert(std::pair<int, int>(405, 70)); // 405 70, 405 150
+    this->positions.insert(std::pair<int, int>(405, 280)); //405 280, 405 360
+    this->positions.insert(std::pair<int, int>(405, 530)); //405 530, 405 610
+
+    this->positions.insert(std::pair<int, int>(495, 70)); // 495 70, 495 150
+    this->positions.insert(std::pair<int, int>(495, 280)); //495 280, 495 360
+    this->positions.insert(std::pair<int, int>(495, 530)); //495 530, 495 610
+
+    this->positions.insert(std::pair<int, int>(725, 70)); // 725 70, 725 150
+    this->positions.insert(std::pair<int, int>(725, 280)); //725 280, 725 360
+    this->positions.insert(std::pair<int, int>(725, 530)); //725 530, 725 610
+
+    this->positions.insert(std::pair<int, int>(815, 70)); // 815 70, 815 150
+    this->positions.insert(std::pair<int, int>(815, 280)); //815 280, 815 360
+    this->positions.insert(std::pair<int, int>(815, 530)); //815 530, 815 610
 }
 
 
