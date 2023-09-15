@@ -123,6 +123,22 @@ void screen::initSeatPos(){
     //         this->defaultMessage[spot+z+(l*4)].setPosition((x + (z*90)), (y + (l*80)));
     //     }
     // }
+    
+    int posx;
+    int posy;
+    int index = 0;
+    for (multimap<int,int>::iterator it= positions.begin(); it != positions.end(); ++it) {
+        posx = it->first;
+        posy = it->second;
+        this->defaultMessage[index].setPosition(posx, posy); 
+        index++;
+        this->defaultMessage[index].setPosition(posx, posy+80);
+        index++;
+
+    }
+}
+
+void screen::intPosStorage(){
     this->positions.insert(std::pair<int, int>(85, 70)); // 85 70, 85 150
     this->positions.insert(std::pair<int, int>(85, 280)); // 85 280, 85 360
 
@@ -145,7 +161,6 @@ void screen::initSeatPos(){
     this->positions.insert(std::pair<int, int>(815, 280)); //815 280, 815 360
     this->positions.insert(std::pair<int, int>(815, 530)); //815 530, 815 610
 }
-
 
 /**
  * return True if window is still opened
@@ -200,6 +215,7 @@ void screen::rungame(){
  */
 screen::screen(){
 	this->initVariables();
+    this->intPosStorage();
     this->initWindow();
     this->initFonts();
     this->initMessages();

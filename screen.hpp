@@ -59,6 +59,7 @@ private:
 	void initMessages();
     void randomize();
     void initSeatPos();
+    void intPosStorage();
 public:
 	//Constructors / Destructors
 	screen();
