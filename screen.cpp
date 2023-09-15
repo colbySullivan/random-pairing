@@ -15,6 +15,13 @@ void screen::initVariables(){
     this->students = readCsv();
 }
 
+/**
+ * Read from CSV and put into vector of vector strings
+ * 
+ * vector<vector<string>> allows for future track of 
+ * partner pair if ever implemented
+ *
+ */
 vector<vector<string>> screen::readCsv(){
     vector<vector<string>> content;
 
@@ -60,9 +67,8 @@ void screen::initFonts(){
 }
 
 /**
- * Creates a global text variable that is meant to display
+ * Creates global text variables that is meant to display
  * a simple message on the window.
- *
  */
 void screen::initMessages(){
     sf::Text defaultMessage[students.size()];
@@ -82,7 +88,7 @@ void screen::initMessages(){
     this->initSeatPos();
 }
 
-//TODO basic random function needs to be updated
+// Very basic random function
 void screen::randomize(){
     auto rd = std::random_device {}; 
     auto rng = std::default_random_engine { rd() };
@@ -90,11 +96,12 @@ void screen::randomize(){
 }
 
 // This is a mess and will only work for this lab
+// There was very little thought into the future proof of this part
 void screen::initSeatPos(){
-    // Pixel spacing [{80,70},{170,80}{400,80}, {490,80}]
+    // Pixel spacing for first row[{80,70},{170,80}{400,80}, {490,80}]
     int y = 70;
     for(int j = 0; j < 4; j++){
-        int x = 80;
+        int x = 85;
         if (j == 2)
             y+=50;
         for(int i = 0; i < 6; i++){ //Rows
@@ -104,10 +111,10 @@ void screen::initSeatPos(){
         }
     }
     y = 530;
-    int x = 395;
+    int x = 400;
     int spot = 24; //After instructor table
     for(int l = 0; l <= 1; l++){
-        x = 395;
+        x = 400;
         for(int z = 0; z < 4; z++){
             if(z == 2)
                 x+= 140;
