@@ -53,7 +53,7 @@ Commands to build statically and dynamically are provided.
 ```
 
 # Dependencies
-Install of SMFL is required to run the program.
+Install of SMFL is required to compile the program but main exe should run stand alone if resource and csv are in the same file.
 
 https://www.sfml-dev.org/download.php
 
