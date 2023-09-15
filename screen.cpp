@@ -74,7 +74,7 @@ void screen::initMessages(){
     sf::Text defaultMessage[students.size()];
     for(int i=0;i<students.size();i++){
         this->defaultMessage[i].setFont(font);
-        this->defaultMessage[i].setCharacterSize(20);
+        this->defaultMessage[i].setCharacterSize(18);
         this->defaultMessage[i].setFillColor(sf::Color::Black);
 		// for(int j=0;j<students[i].size();j++){ // TODO For reading other columns
 		// 	
@@ -82,7 +82,9 @@ void screen::initMessages(){
     }
     randomize();
     for(int j=0;j<students.size();j++){
-        string message = students[j][0];
+        string message = " "; //Absent student
+        if(students[j][1] == "1")
+            message = students[j][0];
         this->defaultMessage[j].setString(message);
     }
     this->initSeatPos();
@@ -152,7 +154,7 @@ void screen::pollEvents(){
  * Main run file that polls and displays
  */
 void screen::rungame(){
-    if(students.size() < 60){
+    if(students.size() < 35){
     // Handle events
     this->pollEvents();
 
